@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.livetranslate.app.SupportedLanguageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-05T10:29:20.813Z" hostname="DESKTOP-50MV6SE" time="0.002">
+  <properties/>
+  <testcase name="testTargetLanguageIsEnglish" classname="com.livetranslate.app.SupportedLanguageTest" time="0.0"/>
+  <testcase name="testSupportedSourceLanguagesContainsAllMLKitLanguages" classname="com.livetranslate.app.SupportedLanguageTest" time="0.0"/>
+  <testcase name="testFromCodeResolution" classname="com.livetranslate.app.SupportedLanguageTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

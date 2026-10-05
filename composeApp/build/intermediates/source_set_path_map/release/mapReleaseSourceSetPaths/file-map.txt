@@ -1,0 +1,57 @@
+com.livetranslate.app.composeApp-savedstate-ktx-1.2.1-0 C:\Users\hp\.gradle\caches\8.13\transforms\0d10ddf63c12831cc7877b5bfebd4b1c\transformed\savedstate-ktx-1.2.1\res
+com.livetranslate.app.composeApp-customview-poolingcontainer-1.0.0-1 C:\Users\hp\.gradle\caches\8.13\transforms\190859a6d05dbe727765505397fa9a56\transformed\customview-poolingcontainer-1.0.0\res
+com.livetranslate.app.composeApp-lifecycle-process-2.8.5-2 C:\Users\hp\.gradle\caches\8.13\transforms\1da986c4bdf5bcdd00850c75cb51d95b\transformed\lifecycle-process-2.8.5\res
+com.livetranslate.app.composeApp-ui-release-3 C:\Users\hp\.gradle\caches\8.13\transforms\24181ee7166605e487224348eb800755\transformed\ui-release\res
+com.livetranslate.app.composeApp-ui-text-release-4 C:\Users\hp\.gradle\caches\8.13\transforms\25598f3e452b0cde906a54f58e55382e\transformed\ui-text-release\res
+com.livetranslate.app.composeApp-lifecycle-livedata-2.8.5-5 C:\Users\hp\.gradle\caches\8.13\transforms\29157df5a0af27f49bd37b9bd1ce80d0\transformed\lifecycle-livedata-2.8.5\res
+com.livetranslate.app.composeApp-core-ktx-1.13.1-6 C:\Users\hp\.gradle\caches\8.13\transforms\2db240c0e2f3fc637e882cd307696c55\transformed\core-ktx-1.13.1\res
+com.livetranslate.app.composeApp-lifecycle-viewmodel-ktx-2.8.5-7 C:\Users\hp\.gradle\caches\8.13\transforms\4031972f58509668ac68d11954acbf05\transformed\lifecycle-viewmodel-ktx-2.8.5\res
+com.livetranslate.app.composeApp-startup-runtime-1.1.1-8 C:\Users\hp\.gradle\caches\8.13\transforms\458739db1368932abd2f8eec86a663ad\transformed\startup-runtime-1.1.1\res
+com.livetranslate.app.composeApp-emoji2-1.3.0-9 C:\Users\hp\.gradle\caches\8.13\transforms\4c35e8b9c9c1cdaf3abda3c93c4d2aad\transformed\emoji2-1.3.0\res
+com.livetranslate.app.composeApp-activity-1.10.0-10 C:\Users\hp\.gradle\caches\8.13\transforms\50d0d8e0daee89d6de96a94f5cc6d31b\transformed\activity-1.10.0\res
+com.livetranslate.app.composeApp-lifecycle-runtime-compose-release-11 C:\Users\hp\.gradle\caches\8.13\transforms\51994116e6ec001f9d12b8a53b6758f9\transformed\lifecycle-runtime-compose-release\res
+com.livetranslate.app.composeApp-ui-graphics-release-12 C:\Users\hp\.gradle\caches\8.13\transforms\612daab2ea493c008e62787fc31855b3\transformed\ui-graphics-release\res
+com.livetranslate.app.composeApp-lifecycle-livedata-core-ktx-2.8.5-13 C:\Users\hp\.gradle\caches\8.13\transforms\620716cba3c4897d069aade0b18aba73\transformed\lifecycle-livedata-core-ktx-2.8.5\res
+com.livetranslate.app.composeApp-lifecycle-viewmodel-compose-release-14 C:\Users\hp\.gradle\caches\8.13\transforms\6355a49a60600f368821d8fb555c30db\transformed\lifecycle-viewmodel-compose-release\res
+com.livetranslate.app.composeApp-activity-ktx-1.10.0-15 C:\Users\hp\.gradle\caches\8.13\transforms\690bdd87aaeb5d14d6c2716393ea4aa9\transformed\activity-ktx-1.10.0\res
+com.livetranslate.app.composeApp-animation-core-release-16 C:\Users\hp\.gradle\caches\8.13\transforms\7ae3af9a3402ebadf209690ae135eeb8\transformed\animation-core-release\res
+com.livetranslate.app.composeApp-lifecycle-viewmodel-savedstate-2.8.5-17 C:\Users\hp\.gradle\caches\8.13\transforms\7ccac53774dff5d2f1d1c15af01e95a2\transformed\lifecycle-viewmodel-savedstate-2.8.5\res
+com.livetranslate.app.composeApp-graphics-path-1.0.1-18 C:\Users\hp\.gradle\caches\8.13\transforms\7cdbf806f4445646b311ac44aefd56bd\transformed\graphics-path-1.0.1\res
+com.livetranslate.app.composeApp-foundation-release-19 C:\Users\hp\.gradle\caches\8.13\transforms\7de56b235bff97ae2c499aeb7936b49e\transformed\foundation-release\res
+com.livetranslate.app.composeApp-profileinstaller-1.4.0-20 C:\Users\hp\.gradle\caches\8.13\transforms\8501bfb9619dade68b7fbcc56e7a5ee5\transformed\profileinstaller-1.4.0\res
+com.livetranslate.app.composeApp-material3-release-21 C:\Users\hp\.gradle\caches\8.13\transforms\859fb604be3a95237e2d4311045cce6f\transformed\material3-release\res
+com.livetranslate.app.composeApp-ui-geometry-release-22 C:\Users\hp\.gradle\caches\8.13\transforms\8a85154065bb98993d4e4a34bb7f00e8\transformed\ui-geometry-release\res
+com.livetranslate.app.composeApp-lifecycle-runtime-ktx-release-23 C:\Users\hp\.gradle\caches\8.13\transforms\933c8b5d7bd02b873cfc091109b2ad6c\transformed\lifecycle-runtime-ktx-release\res
+com.livetranslate.app.composeApp-lifecycle-livedata-core-2.8.5-24 C:\Users\hp\.gradle\caches\8.13\transforms\98b907feb47876f054b40859328a757c\transformed\lifecycle-livedata-core-2.8.5\res
+com.livetranslate.app.composeApp-play-services-base-18.5.0-25 C:\Users\hp\.gradle\caches\8.13\transforms\9c264f51a5c63f4896588d91e7ed0f35\transformed\play-services-base-18.5.0\res
+com.livetranslate.app.composeApp-appcompat-1.6.1-26 C:\Users\hp\.gradle\caches\8.13\transforms\9cdcf8c397f36abcce98155a3afabb10\transformed\appcompat-1.6.1\res
+com.livetranslate.app.composeApp-activity-compose-1.10.0-27 C:\Users\hp\.gradle\caches\8.13\transforms\a603e34bc55227e94e340fdab55b01cd\transformed\activity-compose-1.10.0\res
+com.livetranslate.app.composeApp-material-icons-core-release-28 C:\Users\hp\.gradle\caches\8.13\transforms\ad226e2040ded73d2c84c90ba4c3a743\transformed\material-icons-core-release\res
+com.livetranslate.app.composeApp-ui-unit-release-29 C:\Users\hp\.gradle\caches\8.13\transforms\b1c3edb32e7d9d845e8f0f2425d50866\transformed\ui-unit-release\res
+com.livetranslate.app.composeApp-lifecycle-runtime-release-30 C:\Users\hp\.gradle\caches\8.13\transforms\b38eb5beb097793c7f02f052e6910707\transformed\lifecycle-runtime-release\res
+com.livetranslate.app.composeApp-savedstate-1.2.1-31 C:\Users\hp\.gradle\caches\8.13\transforms\c756a368bd26785cc778e419a4f5c05c\transformed\savedstate-1.2.1\res
+com.livetranslate.app.composeApp-appcompat-resources-1.6.1-32 C:\Users\hp\.gradle\caches\8.13\transforms\c8ae3b223f3d9e7ac1d44a6a97f90b02\transformed\appcompat-resources-1.6.1\res
+com.livetranslate.app.composeApp-ui-util-release-33 C:\Users\hp\.gradle\caches\8.13\transforms\cb3f02f74dbdb9490ca8ce7f0e4ebc1a\transformed\ui-util-release\res
+com.livetranslate.app.composeApp-runtime-release-34 C:\Users\hp\.gradle\caches\8.13\transforms\d53f9e2f098fea059f26f8d5ac8e020c\transformed\runtime-release\res
+com.livetranslate.app.composeApp-foundation-layout-release-35 C:\Users\hp\.gradle\caches\8.13\transforms\e152f5faedb2d5e601dc0d55afd8ae43\transformed\foundation-layout-release\res
+com.livetranslate.app.composeApp-animation-release-36 C:\Users\hp\.gradle\caches\8.13\transforms\e5554296e7bcb299cda09e076e9e62c0\transformed\animation-release\res
+com.livetranslate.app.composeApp-play-services-basement-18.4.0-37 C:\Users\hp\.gradle\caches\8.13\transforms\e5d7f4ac6125cbbdf3b0540cd9bf3614\transformed\play-services-basement-18.4.0\res
+com.livetranslate.app.composeApp-core-bundle-release-38 C:\Users\hp\.gradle\caches\8.13\transforms\e6e2586b4995e6478499909961c2bfc3\transformed\core-bundle-release\res
+com.livetranslate.app.composeApp-material-ripple-release-39 C:\Users\hp\.gradle\caches\8.13\transforms\e773e06f3a315cc3b68ec15fbe7ce019\transformed\material-ripple-release\res
+com.livetranslate.app.composeApp-translate-17.0.3-40 C:\Users\hp\.gradle\caches\8.13\transforms\eb7166f72e72f5030cab90cfea282879\transformed\translate-17.0.3\res
+com.livetranslate.app.composeApp-emoji2-views-helper-1.3.0-41 C:\Users\hp\.gradle\caches\8.13\transforms\ee83390a537b7f9cfd0bf3cbe8daf97e\transformed\emoji2-views-helper-1.3.0\res
+com.livetranslate.app.composeApp-lifecycle-viewmodel-release-42 C:\Users\hp\.gradle\caches\8.13\transforms\f09b63296df885e53b1fa6adb3c84b9b\transformed\lifecycle-viewmodel-release\res
+com.livetranslate.app.composeApp-runtime-saveable-release-43 C:\Users\hp\.gradle\caches\8.13\transforms\f368d70064baa45a05d82aa165c33d18\transformed\runtime-saveable-release\res
+com.livetranslate.app.composeApp-annotation-experimental-1.4.1-44 C:\Users\hp\.gradle\caches\8.13\transforms\f42d340c467dcf6514a8549c104a4384\transformed\annotation-experimental-1.4.1\res
+com.livetranslate.app.composeApp-core-runtime-2.2.0-45 C:\Users\hp\.gradle\caches\8.13\transforms\f92340903292ab3a592c417f2a60c14f\transformed\core-runtime-2.2.0\res
+com.livetranslate.app.composeApp-fragment-1.3.6-46 C:\Users\hp\.gradle\caches\8.13\transforms\fb5d07bb39e1163d7b73a8fce71ae4f4\transformed\fragment-1.3.6\res
+com.livetranslate.app.composeApp-core-1.13.1-47 C:\Users\hp\.gradle\caches\8.13\transforms\fff07e8ec6a93bae9c2191d5c8beeb87\transformed\core-1.13.1\res
+com.livetranslate.app.composeApp-pngs-48 D:\Brainy\Translation Project\composeApp\build\generated\res\pngs\release
+com.livetranslate.app.composeApp-resValues-49 D:\Brainy\Translation Project\composeApp\build\generated\res\resValues\release
+com.livetranslate.app.composeApp-packageReleaseResources-50 D:\Brainy\Translation Project\composeApp\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.livetranslate.app.composeApp-packageReleaseResources-51 D:\Brainy\Translation Project\composeApp\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.livetranslate.app.composeApp-release-52 D:\Brainy\Translation Project\composeApp\build\intermediates\merged_res\release\mergeReleaseResources
+com.livetranslate.app.composeApp-androidMain-53 D:\Brainy\Translation Project\composeApp\src\androidMain\res
+com.livetranslate.app.composeApp-androidRelease-54 D:\Brainy\Translation Project\composeApp\src\androidRelease\res
+com.livetranslate.app.composeApp-main-55 D:\Brainy\Translation Project\composeApp\src\main\res
+com.livetranslate.app.composeApp-release-56 D:\Brainy\Translation Project\composeApp\src\release\res

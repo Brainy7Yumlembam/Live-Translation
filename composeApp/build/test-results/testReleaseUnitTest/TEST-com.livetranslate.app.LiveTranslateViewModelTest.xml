@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.livetranslate.app.LiveTranslateViewModelTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-05T10:29:20.737Z" hostname="DESKTOP-50MV6SE" time="0.073">
+  <properties/>
+  <testcase name="testManualTextTranslationModeContinuesWorkingAndPersists" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.043"/>
+  <testcase name="testClearHistoryClearsTableAndState" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.007"/>
+  <testcase name="testStartupRestoresPersistedSegmentsAndFiltersExpired" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.005"/>
+  <testcase name="testPartialResultDoesNotTriggerTranslation" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.008"/>
+  <testcase name="testFinalResultTriggersTranslationAndAddsToHistory" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
