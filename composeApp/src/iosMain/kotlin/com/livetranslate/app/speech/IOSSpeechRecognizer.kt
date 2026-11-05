@@ -11,6 +11,8 @@ import platform.AVFAudio.AVAudioSessionCategoryPlayAndRecord
 import platform.AVFAudio.AVAudioSessionModeMeasurement
 import platform.AVFAudio.setActive
 import platform.Foundation.NSLocale
+import platform.Foundation.currentLocale
+import platform.Foundation.localeIdentifier
 import platform.Foundation.localeWithLocaleIdentifier
 import platform.Speech.SFSpeechAudioBufferRecognitionRequest
 import platform.Speech.SFSpeechRecognitionTask
@@ -42,6 +44,7 @@ class IOSSpeechRecognizer : SpeechRecognizer {
             "de" -> "de-DE"
             "es" -> "es-ES"
             "en" -> "en-US"
+            "auto" -> NSLocale.currentLocale.localeIdentifier
             else -> languageCode
         }
 

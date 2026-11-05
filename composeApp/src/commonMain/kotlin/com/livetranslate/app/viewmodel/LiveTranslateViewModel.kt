@@ -3,6 +3,9 @@ package com.livetranslate.app.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.livetranslate.app.data.ConversationRepository
+import com.livetranslate.app.detection.DefaultLanguageDetector
+import com.livetranslate.app.detection.HindiTransliterator
+import com.livetranslate.app.detection.LanguageDetector
 import com.livetranslate.app.model.LiveTranslateUiState
 import com.livetranslate.app.model.SupportedLanguage
 import com.livetranslate.app.model.TranslationSegment
@@ -19,12 +22,13 @@ import kotlinx.coroutines.launch
 
 /**
  * ViewModel driving continuous voice recognition, real-time chunk translation,
- * and 1-week persistent table conversation history.
+ * automatic language detection, and 1-week persistent table conversation history.
  */
 class LiveTranslateViewModel(
     private val translationEngine: TranslationEngine,
     private val speechRecognizer: SpeechRecognizer? = null,
-    private val conversationRepository: ConversationRepository? = null
+    private val conversationRepository: ConversationRepository? = null,
+    private val languageDetector: LanguageDetector = DefaultLanguageDetector()
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LiveTranslateUiState())
@@ -68,18 +72,39 @@ class LiveTranslateViewModel(
                         }
                     }
                     is SpeechRecognitionState.Listening -> {
+                        val currentSource = _uiState.value.selectedSourceLanguage
+                        val langLabel = if (_uiState.value.isAutoDetect && currentSource == SupportedLanguage.AUTO) {
+                            "Auto Detect"
+                        } else {
+                            currentSource.displayName
+                        }
                         _uiState.update {
                             it.copy(
                                 isListening = true,
-                                statusMessage = "🎤 Listening (${it.selectedSourceLanguage.displayName})...",
+                                statusMessage = "🎤 Listening ($langLabel)...",
                                 errorMessage = null
                             )
                         }
                     }
                     is SpeechRecognitionState.PartialResult -> {
+                        val text = state.text
+                        var updatedSource = _uiState.value.selectedSourceLanguage
+                        var updatedDetected = _uiState.value.detectedLanguage
+
+                        // Eagerly detect language on partial speech if in auto mode and confident
+                        if (_uiState.value.isAutoDetect && text.length >= 3) {
+                            val detected = languageDetector.detectLanguage(text)
+                            if (detected != null) {
+                                updatedSource = detected
+                                updatedDetected = detected
+                            }
+                        }
+
                         _uiState.update {
                             it.copy(
-                                currentSpeechText = state.text
+                                currentSpeechText = text,
+                                selectedSourceLanguage = updatedSource,
+                                detectedLanguage = updatedDetected
                             )
                         }
                     }
@@ -110,11 +135,13 @@ class LiveTranslateViewModel(
                         }
                     }
                     is SpeechRecognitionState.LanguageNotSupported -> {
+                        val currentSource = _uiState.value.selectedSourceLanguage
+                        val langName = if (_uiState.value.isAutoDetect && currentSource == SupportedLanguage.AUTO) "Auto Detect" else currentSource.displayName
                         _uiState.update {
                             it.copy(
                                 isListening = false,
                                 currentSpeechText = "",
-                                errorMessage = "Speech recognition is not supported for ${it.selectedSourceLanguage.displayName}.",
+                                errorMessage = "Speech recognition is not supported for $langName.",
                                 statusMessage = "Language not supported"
                             )
                         }
@@ -129,23 +156,50 @@ class LiveTranslateViewModel(
      */
     private fun translateSpokenPhrase(sourceText: String) {
         viewModelScope.launch {
-            val sourceLang = _uiState.value.selectedSourceLanguage
+            val currentState = _uiState.value
+            var sourceLang = currentState.selectedSourceLanguage
+
+            // In Auto Detect mode, identify language from the recognized final speech text
+            if (currentState.isAutoDetect) {
+                val detected = languageDetector.detectLanguage(sourceText)
+                if (detected != null) {
+                    sourceLang = detected
+                    _uiState.update {
+                        it.copy(
+                            selectedSourceLanguage = detected,
+                            detectedLanguage = detected
+                        )
+                    }
+                }
+            }
+
+            // Fallback if source language is still AUTO (unrecognizable speech)
+            if (sourceLang == SupportedLanguage.AUTO) {
+                sourceLang = SupportedLanguage.ENGLISH
+            }
+
             val targetLang = _uiState.value.targetLanguage
             val now = currentTimeMillis()
 
             _uiState.update {
                 it.copy(
                     isTranslating = true,
-                    statusMessage = "Translating sentence on-device..."
+                    statusMessage = "Translating sentence (${sourceLang.displayName} → ${targetLang.displayName})..."
                 )
             }
 
-            when (val result = translationEngine.translate(sourceText, sourceLang.code, targetLang.code)) {
+            val textToTranslate = if (sourceLang == SupportedLanguage.HINDI) {
+                HindiTransliterator.toDevanagari(sourceText)
+            } else {
+                sourceText
+            }
+
+            when (val result = translationEngine.translate(textToTranslate, sourceLang.code, targetLang.code)) {
                 is TranslationResult.Success -> {
                     segmentCounter++
                     val segment = TranslationSegment(
                         id = "seg_${now}_${segmentCounter}",
-                        sourceText = result.originalText,
+                        sourceText = sourceText,
                         translatedText = result.translatedText,
                         sourceLanguage = sourceLang.code,
                         targetLanguage = targetLang.code,
@@ -155,10 +209,13 @@ class LiveTranslateViewModel(
                     conversationRepository?.saveSegment(segment)
 
                     _uiState.update {
+                        val isListening = it.isListening
+                        val currentLang = it.selectedSourceLanguage
+                        val langLabel = if (it.isAutoDetect && currentLang == SupportedLanguage.AUTO) "Auto Detect" else currentLang.displayName
                         it.copy(
                             isTranslating = false,
                             segments = it.segments + segment,
-                            statusMessage = if (it.isListening) "🎤 Listening (${sourceLang.displayName})..." else "Translation ready"
+                            statusMessage = if (isListening) "🎤 Listening ($langLabel)..." else "Translation ready"
                         )
                     }
                 }
@@ -177,11 +234,14 @@ class LiveTranslateViewModel(
                     conversationRepository?.saveSegment(errorSegment)
 
                     _uiState.update {
+                        val isListening = it.isListening
+                        val currentLang = it.selectedSourceLanguage
+                        val langLabel = if (it.isAutoDetect && currentLang == SupportedLanguage.AUTO) "Auto Detect" else currentLang.displayName
                         it.copy(
                             isTranslating = false,
                             segments = it.segments + errorSegment,
                             errorMessage = result.message,
-                            statusMessage = if (it.isListening) "🎤 Listening (${sourceLang.displayName})..." else "Translation error"
+                            statusMessage = if (isListening) "🎤 Listening ($langLabel)..." else "Translation error"
                         )
                     }
                 }
@@ -201,36 +261,68 @@ class LiveTranslateViewModel(
                 )
             }
         } else {
+            val isAuto = _uiState.value.isAutoDetect
             val lang = _uiState.value.selectedSourceLanguage
+            val codeToListen = if (isAuto) "auto" else lang.code
+            val langLabel = if (isAuto) "Auto Detect" else lang.displayName
+
             _uiState.update {
                 it.copy(
                     isListening = true,
                     currentSpeechText = "",
                     errorMessage = null,
-                    statusMessage = "🎤 Starting to listen in ${lang.displayName}..."
+                    statusMessage = "🎤 Starting to listen in $langLabel..."
                 )
             }
-            recognizer.startListening(lang.code)
+            recognizer.startListening(codeToListen)
         }
     }
 
+    /**
+     * Updates the source language selection.
+     * If [SupportedLanguage.AUTO] is passed, automatic detection is enabled.
+     * If a specific language is passed, automatic detection is disabled and that language is used.
+     */
     fun selectSourceLanguage(language: SupportedLanguage) {
         val wasListening = _uiState.value.isListening
         if (wasListening) {
             speechRecognizer?.stopListening()
         }
 
+        val isAuto = (language == SupportedLanguage.AUTO)
+
         _uiState.update {
             it.copy(
                 selectedSourceLanguage = language,
+                isAutoDetect = isAuto,
+                detectedLanguage = null,
                 currentSpeechText = "",
                 errorMessage = null,
-                statusMessage = if (wasListening) "Switched to ${language.displayName}. Resuming listening..." else "Selected ${language.displayName}"
+                statusMessage = if (isAuto) {
+                    if (wasListening) "Auto Detect enabled. Resuming listening..." else "Auto Detect enabled"
+                } else {
+                    if (wasListening) "Switched to ${language.displayName}. Resuming listening..." else "Selected ${language.displayName}"
+                }
             )
         }
 
         if (wasListening) {
-            speechRecognizer?.startListening(language.code)
+            val codeToListen = if (isAuto) "auto" else language.code
+            speechRecognizer?.startListening(codeToListen)
+        }
+    }
+
+    /**
+     * Updates the target language selection.
+     * Does not affect the source language selection or automatic detection state.
+     */
+    fun selectTargetLanguage(language: SupportedLanguage) {
+        _uiState.update {
+            it.copy(
+                targetLanguage = language,
+                errorMessage = null,
+                statusMessage = "Target language set to ${language.displayName}"
+            )
         }
     }
 
@@ -250,7 +342,30 @@ class LiveTranslateViewModel(
         }
 
         viewModelScope.launch {
-            val sourceLang = _uiState.value.selectedSourceLanguage
+            val currentState = _uiState.value
+            var sourceLang = currentState.selectedSourceLanguage
+
+            if (currentState.isAutoDetect) {
+                val detected = languageDetector.detectLanguage(text)
+                if (detected != null) {
+                    sourceLang = detected
+                    _uiState.update {
+                        it.copy(
+                            selectedSourceLanguage = detected,
+                            detectedLanguage = detected
+                        )
+                    }
+                } else if (sourceLang == SupportedLanguage.AUTO) {
+                    _uiState.update {
+                        it.copy(
+                            errorMessage = "Could not detect language. Please select a source language manually or type a complete phrase.",
+                            statusMessage = "Language detection failed"
+                        )
+                    }
+                    return@launch
+                }
+            }
+
             val targetLang = _uiState.value.targetLanguage
             val now = currentTimeMillis()
 
@@ -258,16 +373,22 @@ class LiveTranslateViewModel(
                 it.copy(
                     isTranslating = true,
                     errorMessage = null,
-                    statusMessage = "Translating typed text..."
+                    statusMessage = "Translating typed text (${sourceLang.displayName} → ${targetLang.displayName})..."
                 )
             }
 
-            when (val result = translationEngine.translate(text, sourceLang.code, targetLang.code)) {
+            val textToTranslate = if (sourceLang == SupportedLanguage.HINDI) {
+                HindiTransliterator.toDevanagari(text)
+            } else {
+                text
+            }
+
+            when (val result = translationEngine.translate(textToTranslate, sourceLang.code, targetLang.code)) {
                 is TranslationResult.Success -> {
                     segmentCounter++
                     val segment = TranslationSegment(
                         id = "seg_${now}_${segmentCounter}",
-                        sourceText = result.originalText,
+                        sourceText = text,
                         translatedText = result.translatedText,
                         sourceLanguage = sourceLang.code,
                         targetLanguage = targetLang.code,

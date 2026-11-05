@@ -66,6 +66,7 @@ class ConversationTable(
         } else {
             currentRecords.add(segment)
         }
+
         saveRecords(currentRecords)
     }
 
@@ -120,6 +121,7 @@ class ConversationTable(
      *
      * @param nowMillis Current timestamp (defaults to system time)
      * @param retentionMillis Retention threshold (defaults to 7 days = 604,800,000 ms)
+
      * @return Number of auto-deleted segments
      */
     fun autoDeleteExpired(

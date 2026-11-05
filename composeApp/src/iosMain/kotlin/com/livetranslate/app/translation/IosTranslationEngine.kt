@@ -24,10 +24,18 @@ class IosTranslationEngine : TranslationEngine {
             )
         }
 
-        val sourceLang = SupportedLanguage.fromCode(sourceLanguage)
+        if (sourceLanguage.equals(targetLanguage, ignoreCase = true)) {
+            return TranslationResult.Success(
+                originalText = text,
+                translatedText = trimmed,
+                sourceLanguage = sourceLanguage,
+                targetLanguage = targetLanguage
+            )
+        }
+
         return TranslationResult.Success(
             originalText = text,
-            translatedText = "[iOS On-Device Placeholder]: $trimmed",
+            translatedText = "[iOS On-Device Placeholder $sourceLanguage->$targetLanguage]: $trimmed",
             sourceLanguage = sourceLanguage,
             targetLanguage = targetLanguage
         )

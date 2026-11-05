@@ -1,20 +1,25 @@
 package com.livetranslate.app.speech
 
+import android.Manifest
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer as AndroidPlatformSpeechRecognizer
+import androidx.core.content.ContextCompat
 import com.livetranslate.app.model.SupportedLanguage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * Android implementation of [SpeechRecognizer] with continuous listening support.
+ * Android implementation of [SpeechRecognizer] with continuous listening support
+ * and dynamic multi-language recognition / Auto Detect capability.
  *
  * Emits partial results as the user speaks and final results when a sentence/phrase completes.
  * Automatically and safely continues listening across pauses until explicitly stopped by the user.
@@ -31,7 +36,7 @@ class AndroidSpeechRecognizer(
 
     @Volatile
     private var userRequestedListening = false
-    private var currentLanguageCode: String = "ja"
+    private var currentLanguageCode: String = "auto"
     private var isSessionActive = false
 
     private val restartRunnable = Runnable {
@@ -57,32 +62,81 @@ class AndroidSpeechRecognizer(
     private fun startListeningInternal(languageCode: String) {
         if (!userRequestedListening) return
 
-        if (!AndroidPlatformSpeechRecognizer.isRecognitionAvailable(context)) {
-            _state.value = SpeechRecognitionState.Error(
-                message = "Speech recognition is not available on this device",
-                isRecoverable = false
-            )
+        // Verify microphone permission at runtime (especially for Android 13+)
+        val hasPermission = ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.RECORD_AUDIO
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (!hasPermission) {
+            _state.value = SpeechRecognitionState.PermissionDenied
             userRequestedListening = false
             return
         }
 
+        val googleComponent = ComponentName(
+            "com.google.android.googlequicksearchbox",
+            "com.google.android.voicesearch.serviceapi.GoogleRecognitionService"
+        )
+        val isGenericAvailable = AndroidPlatformSpeechRecognizer.isRecognitionAvailable(context)
+
+        if (!isGenericAvailable) {
+            val isGoogleServiceAvailable = try {
+                val intent = Intent(android.speech.RecognitionService.SERVICE_INTERFACE).setComponent(googleComponent)
+                context.packageManager.queryIntentServices(intent, 0).isNotEmpty()
+            } catch (e: Exception) {
+                false
+            }
+
+            if (!isGoogleServiceAvailable) {
+                _state.value = SpeechRecognitionState.Error(
+                    message = "Speech recognition is not available on this device. Please install or enable Google Speech Services.",
+                    isRecoverable = false
+                )
+                userRequestedListening = false
+                return
+            }
+        }
+
+        val isAuto = languageCode.equals("auto", ignoreCase = true)
         val localeTag = resolveSpeechLocaleTag(languageCode)
 
         try {
             cleanupRecognizer()
 
-            speechRecognizer = AndroidPlatformSpeechRecognizer.createSpeechRecognizer(context).apply {
-                setRecognitionListener(this@AndroidSpeechRecognizer)
+            speechRecognizer = try {
+                if (isGenericAvailable) {
+                    AndroidPlatformSpeechRecognizer.createSpeechRecognizer(context)
+                } else {
+                    AndroidPlatformSpeechRecognizer.createSpeechRecognizer(context, googleComponent)
+                }
+            } catch (e: Exception) {
+                AndroidPlatformSpeechRecognizer.createSpeechRecognizer(context, googleComponent)
             }
+
+            speechRecognizer?.setRecognitionListener(this@AndroidSpeechRecognizer)
 
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE, localeTag)
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, localeTag)
-                putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, localeTag)
+                if (!isAuto) {
+                    putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, localeTag)
+                }
                 putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
                 putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
                 putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, context.packageName)
+
+                if (isAuto) {
+                    // Android 14+ (API 34+) automatic language detection and switching
+                    putExtra("android.speech.extra.ENABLE_LANGUAGE_DETECTION", true)
+                    putExtra("android.speech.extra.ENABLE_LANGUAGE_SWITCH", true)
+                    val allowed = arrayListOf(
+                        "en-US", "en-IN", "en-GB", "ja-JP", "zh-CN", "ko-KR", "ru-RU", "hi-IN", "fr-FR", "de-DE", "es-ES"
+                    )
+                    putStringArrayListExtra("android.speech.extra.LANGUAGE_SWITCH_ALLOWED_LANGUAGES", allowed)
+                    putStringArrayListExtra("android.speech.extra.LANGUAGE_DETECTION_ALLOWED_LANGUAGES", allowed)
+                }
             }
 
             speechRecognizer?.startListening(intent)
@@ -138,6 +192,7 @@ class AndroidSpeechRecognizer(
         "de" -> "de-DE"
         "es" -> "es-ES"
         "en" -> "en-US"
+        "auto" -> java.util.Locale.getDefault().toLanguageTag()
         else -> code
     }
 

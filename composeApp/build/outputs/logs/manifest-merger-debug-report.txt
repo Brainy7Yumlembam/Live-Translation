@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-27:12
-INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-27:12
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-34:12
+INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-34:12
+INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-34:12
+INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:2:1-34:12
 MERGED from [com.google.mlkit:translate:17.0.3] C:\Users\hp\.gradle\caches\8.13\transforms\eb7166f72e72f5030cab90cfea282879\transformed\translate-17.0.3\AndroidManifest.xml:2:1-20:12
 MERGED from [com.google.mlkit:common:18.11.0] C:\Users\hp\.gradle\caches\8.13\transforms\060c350d7fedc5795ecd651c103e956c\transformed\common-18.11.0\AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\hp\.gradle\caches\8.13\transforms\c8ae3b223f3d9e7ac1d44a6a97f90b02\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -92,9 +92,21 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Us
 MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\hp\.gradle\caches\8.13\transforms\d3306034adea5f67adab7bb652c16301\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:26:5-67
 	android:name
 		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:5:22-64
+queries
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:7:5-12:15
+intent#action:name:android.speech.RecognitionService
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:8:9-10:18
+action#android.speech.RecognitionService
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:9:13-72
+	android:name
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:9:21-69
+package#com.google.android.googlequicksearchbox
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:11:9-75
+	android:name
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:11:18-72
 application
-ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:7:5-25:19
-INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:7:5-25:19
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:14:5-32:19
+INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:14:5-32:19
 MERGED from [com.google.mlkit:translate:17.0.3] C:\Users\hp\.gradle\caches\8.13\transforms\eb7166f72e72f5030cab90cfea282879\transformed\translate-17.0.3\AndroidManifest.xml:10:5-18:19
 MERGED from [com.google.mlkit:translate:17.0.3] C:\Users\hp\.gradle\caches\8.13\transforms\eb7166f72e72f5030cab90cfea282879\transformed\translate-17.0.3\AndroidManifest.xml:10:5-18:19
 MERGED from [com.google.mlkit:common:18.11.0] C:\Users\hp\.gradle\caches\8.13\transforms\060c350d7fedc5795ecd651c103e956c\transformed\common-18.11.0\AndroidManifest.xml:8:5-24:19
@@ -128,37 +140,37 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\hp
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] C:\Users\hp\.gradle\caches\8.13\transforms\fff07e8ec6a93bae9c2191d5c8beeb87\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:12:9-35
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:19:9-35
 	android:label
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:10:9-38
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:17:9-38
 	android:roundIcon
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:11:9-63
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:18:9-63
 	android:icon
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:9:9-58
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:16:9-58
 	android:allowBackup
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:8:9-35
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:15:9-35
 	android:theme
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:13:9-72
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:20:9-72
 activity#com.livetranslate.app.MainActivity
-ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:15:9-24:20
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:22:9-31:20
 	android:exported
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:17:13-36
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:24:13-36
 	android:configChanges
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:18:13-87
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:25:13-87
 	android:theme
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:19:13-76
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:26:13-76
 	android:name
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:16:13-41
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:23:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:20:13-23:29
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:27:13-30:29
 action#android.intent.action.MAIN
-ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:21:17-69
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:28:17-69
 	android:name
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:21:25-66
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:28:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:22:17-77
+ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:22:27-74
+		ADDED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml:29:27-74
 uses-sdk
 INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Brainy\Translation Project\composeApp\src\androidMain\AndroidManifest.xml

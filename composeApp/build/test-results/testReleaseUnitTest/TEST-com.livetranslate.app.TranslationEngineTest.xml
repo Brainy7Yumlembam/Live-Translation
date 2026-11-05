@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.livetranslate.app.TranslationEngineTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-05T10:29:20.818Z" hostname="DESKTOP-50MV6SE" time="0.011">
+<testsuite name="com.livetranslate.app.TranslationEngineTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-22T11:41:33.569Z" hostname="DESKTOP-50MV6SE" time="0.007">
   <properties/>
-  <testcase name="testTranslateConvenienceMethod" classname="com.livetranslate.app.TranslationEngineTest" time="0.008"/>
-  <testcase name="testEmptyInputTranslation" classname="com.livetranslate.app.TranslationEngineTest" time="0.003"/>
+  <testcase name="testTranslateConvenienceMethod" classname="com.livetranslate.app.TranslationEngineTest" time="0.004"/>
+  <testcase name="testEmptyInputTranslation" classname="com.livetranslate.app.TranslationEngineTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

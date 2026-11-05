@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.livetranslate.app.LiveTranslateViewModelTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-05T10:29:20.737Z" hostname="DESKTOP-50MV6SE" time="0.073">
+<testsuite name="com.livetranslate.app.LiveTranslateViewModelTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2026-10-22T11:41:33.395Z" hostname="DESKTOP-50MV6SE" time="0.166">
   <properties/>
-  <testcase name="testManualTextTranslationModeContinuesWorkingAndPersists" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.043"/>
-  <testcase name="testClearHistoryClearsTableAndState" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.007"/>
-  <testcase name="testStartupRestoresPersistedSegmentsAndFiltersExpired" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.005"/>
-  <testcase name="testPartialResultDoesNotTriggerTranslation" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.008"/>
+  <testcase name="testManualTextTranslationModeContinuesWorkingAndPersists" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.053"/>
+  <testcase name="testUserCanReturnToAutoDetect" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.003"/>
+  <testcase name="testScenario5ManuallySelectJapaneseToEnglish" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.007"/>
+  <testcase name="testScenario1FreshAppLaunchDefaultsToAutoDetectAndEnglish" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.003"/>
+  <testcase name="testHinglishSpeechTranslatesProperlyIntoEnglishWithoutPagalLogsBug" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.006"/>
+  <testcase name="testSpeakRomanizedHindiChangesSourceToHindiAndTranslatesToEnglish" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.01"/>
+  <testcase name="testScenario11ErrorsAndLifecycleInterruptionsHandledGracefully" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.006"/>
+  <testcase name="testClearHistoryClearsTableAndState" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.01"/>
+  <testcase name="testScenario3SpeakChineseChangesSourceToChineseAndEnglishTranslationAppears" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.004"/>
+  <testcase name="testScenario2SpeakJapaneseChangesSourceToJapaneseAndEnglishTranslationAppears" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.004"/>
+  <testcase name="testScenario4SpeakRussianChangesSourceToRussianAndEnglishTranslationAppears" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.003"/>
+  <testcase name="testStartupRestoresPersistedSegmentsAndFiltersExpired" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.007"/>
+  <testcase name="testScenario9SwitchSpokenLanguageWhileAutoDetectEnabled" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.011"/>
+  <testcase name="testPartialResultDoesNotTriggerTranslation" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.005"/>
   <testcase name="testFinalResultTriggersTranslationAndAddsToHistory" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.009"/>
+  <testcase name="testTargetLanguagePersistedAcrossSourceLanguageChanges" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.004"/>
+  <testcase name="testScenario6ManuallySelectEnglishToJapanese" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.004"/>
+  <testcase name="testScenario7ManuallySelectJapaneseToChinese" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.004"/>
+  <testcase name="testScenario10UnrecognizableSpeechFallbackWithoutCrashing" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.003"/>
+  <testcase name="testScenario8ChangeTargetLanguageWhileSessionIsRunning" classname="com.livetranslate.app.LiveTranslateViewModelTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

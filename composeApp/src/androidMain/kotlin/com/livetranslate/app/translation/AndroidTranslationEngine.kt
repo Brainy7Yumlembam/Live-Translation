@@ -40,6 +40,16 @@ class AndroidTranslationEngine(
             )
         }
 
+        // If source and target languages are identical, return the original text directly
+        if (sourceLanguage.equals(targetLanguage, ignoreCase = true)) {
+            return@withContext TranslationResult.Success(
+                originalText = text,
+                translatedText = trimmedText,
+                sourceLanguage = sourceLanguage,
+                targetLanguage = targetLanguage
+            )
+        }
+
         val sourceLangTag = TranslateLanguage.fromLanguageTag(sourceLanguage)
         val targetLangTag = TranslateLanguage.fromLanguageTag(targetLanguage)
 
@@ -54,6 +64,15 @@ class AndroidTranslationEngine(
             return@withContext TranslationResult.Error(
                 originalText = text,
                 message = "Unsupported target language for ML Kit on-device translation: '$targetLanguage'"
+            )
+        }
+
+        if (sourceLangTag == targetLangTag) {
+            return@withContext TranslationResult.Success(
+                originalText = text,
+                translatedText = trimmedText,
+                sourceLanguage = sourceLanguage,
+                targetLanguage = targetLanguage
             )
         }
 

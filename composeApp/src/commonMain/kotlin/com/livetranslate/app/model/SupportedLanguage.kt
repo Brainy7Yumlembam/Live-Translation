@@ -31,6 +31,7 @@ data class SupportedLanguage(
     }
 
     companion object {
+        val AUTO = SupportedLanguage("auto", "Auto Detect", "Auto Detect", "✨")
         val ENGLISH = SupportedLanguage("en", "English", "English", "🇺🇸")
         val JAPANESE = SupportedLanguage("ja", "Japanese", "日本語", "🇯🇵")
         val CHINESE = SupportedLanguage("zh", "Chinese (Simplified)", "中文", "🇨🇳")
@@ -42,24 +43,8 @@ data class SupportedLanguage(
         val SPANISH = SupportedLanguage("es", "Spanish", "Español", "🇪🇸")
 
         /**
-         * List of verified Google ML Kit on-device translation supported source languages.
+         * List of verified Google ML Kit on-device translation supported languages.
          */
-        val SUPPORTED_SOURCE_LANGUAGES = listOf(
-            JAPANESE,
-            CHINESE,
-            KOREAN,
-            RUSSIAN,
-            HINDI,
-            FRENCH,
-            GERMAN,
-            SPANISH
-        )
-
-        /**
-         * Alias for initial source languages.
-         */
-        val INITIAL_SOURCE_LANGUAGES = SUPPORTED_SOURCE_LANGUAGES
-
         val ALL_SUPPORTED_LANGUAGES = listOf(
             ENGLISH,
             JAPANESE,
@@ -72,7 +57,28 @@ data class SupportedLanguage(
             SPANISH
         )
 
+        /**
+         * Dropdown items for Source Language: Auto Detect followed by all supported languages.
+         */
+        val SOURCE_DROPDOWN_LANGUAGES = listOf(AUTO) + ALL_SUPPORTED_LANGUAGES
+
+        /**
+         * Dropdown items for Target Language: all supported languages.
+         */
+        val TARGET_DROPDOWN_LANGUAGES = ALL_SUPPORTED_LANGUAGES
+
+        /**
+         * Supported source languages for backward compatibility.
+         */
+        val SUPPORTED_SOURCE_LANGUAGES = ALL_SUPPORTED_LANGUAGES
+
+        /**
+         * Alias for initial source languages.
+         */
+        val INITIAL_SOURCE_LANGUAGES = SUPPORTED_SOURCE_LANGUAGES
+
         fun fromCode(code: String): SupportedLanguage? =
-            ALL_SUPPORTED_LANGUAGES.firstOrNull { it.code.equals(code, ignoreCase = true) }
+            if (code.equals("auto", ignoreCase = true)) AUTO
+            else ALL_SUPPORTED_LANGUAGES.firstOrNull { it.code.equals(code, ignoreCase = true) }
     }
 }
